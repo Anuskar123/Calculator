@@ -1,0 +1,165 @@
+{
+  "name": "dokonepal-groceries-wireframes",
+  "version": "1.0.0",
+  "description": "DokoNepal - Groceries & Wireframes Management System for CSY2088 Group Project",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 3000 -o",
+    "dev": "npx live-server --port=3000 --open=/",
+    "lint": "npx eslint assets/js/*.js",
+    "format": "npx prettier --write \"assets/**/*.{js,css,html}\"",
+    "validate": "npx html5-validator --root=. --ignore-warnings",
+    "build": "echo 'No build process needed for static site'",
+    "test": "echo 'No tests specified'",
+    "docs": "echo 'Documentation available in README.md'"
+  },
+  "keywords": [
+    "groceries",
+    "inventory",
+    "wireframes",
+    "management",
+    "web-application",
+    "javascript",
+    "html5",
+    "css3",
+    "responsive-design",
+    "chart-js",
+    "academic-project",
+    "nepal",
+    "csy2088",
+    "nami-college"
+  ],
+  "author": {
+    "name": "DokoNepal Development Team",
+    "email": "team@dokonepal.edu.np",
+    "url": "https://github.com/dokonepal-team"
+  },
+  "contributors": [
+    {
+      "name": "Arun Sharma",
+      "role": "Project Manager & Full Stack Developer",
+      "email": "arun.sharma@namicollege.edu.np"
+    },
+    {
+      "name": "Sita Gurung",
+      "role": "UI/UX Designer & Frontend Developer",
+      "email": "sita.gurung@namicollege.edu.np"
+    },
+    {
+      "name": "Raj Thapa",
+      "role": "Backend Developer & Database Administrator",
+      "email": "raj.thapa@namicollege.edu.np"
+    },
+    {
+      "name": "Maya Patel",
+      "role": "Quality Assurance & Documentation Lead",
+      "email": "maya.patel@namicollege.edu.np"
+    },
+    {
+      "name": "Krishna Basnet",
+      "role": "DevOps Engineer & System Administrator",
+      "email": "krishna.basnet@namicollege.edu.np"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dokonepal-team/groceries-wireframes-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dokonepal-team/groceries-wireframes-system/issues"
+  },
+  "homepage": "https://dokonepal-team.github.io/groceries-wireframes-system/",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^2.0.0",
+    "html5-validator": "^1.0.0",
+    "http-server": "^14.0.0",
+    "live-server": "^1.2.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "funding": {
+    "type": "academic",
+    "url": "https://namicollege.edu.np"
+  },
+  "config": {
+    "port": 3000,
+    "host": "localhost"
+  },
+  "os": [
+    "win32",
+    "darwin",
+    "linux"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "index.html",
+    "assets/",
+    "images/",
+    "README.md",
+    "LICENSE"
+  ],
+  "directories": {
+    "lib": "assets/js",
+    "test": "tests",
+    "doc": "docs"
+  },
+  "man": "./docs/man.1",
+  "bin": {},
+  "optionalDependencies": {},
+  "peerDependencies": {},
+  "bundledDependencies": [],
+  "workspaces": [],
+  "academic": {
+    "course": "CSY2088 - Computer Science Level 5",
+    "institution": "NAMI College",
+    "location": "Kathmandu, Nepal",
+    "semester": "Spring 2024-2025",
+    "submissionDate": "2025-08-15",
+    "supervisor": "Dr. [Supervisor Name]",
+    "requirements": [
+      "Functional web application with CRUD operations",
+      "Responsive design for multiple devices",
+      "Modern web technologies (HTML5, CSS3, JavaScript)",
+      "Data persistence and management",
+      "User authentication system",
+      "Analytics and reporting features",
+      "Team collaboration and documentation"
+    ]
+  },
+  "technologies": {
+    "frontend": [
+      "HTML5",
+      "CSS3",
+      "JavaScript ES6+",
+      "Chart.js",
+      "Font Awesome",
+      "Google Fonts"
+    ],
+    "storage": [
+      "Local Storage API"
+    ],
+    "tools": [
+      "Git",
+      "VS Code",
+      "Browser Developer Tools"
+    ]
+  }
+}
