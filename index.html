@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #121212; /* Very dark gray, almost black */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .calculator-container {
+            max-width: 320px;
+            width: 100%;
+            background-color: #1e1e1e; /* Slightly lighter dark gray for container */
+            border-radius: 1.5rem; /* More rounded */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Darker shadow */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #333333; /* Darker border */
+        }
+        .display {
+            background-color: #000000; /* Pure black for display */
+            color: #ffffff;
+            padding: 1.5rem;
+            text-align: right;
+            font-size: 2.5rem; /* Larger font */
+            font-weight: 600;
+            border-bottom: 1px solid #333333; /* Darker border */
+            word-wrap: break-word;
+            overflow-x: auto;
+            border-top-left-radius: 1.5rem;
+            border-top-right-radius: 1.5rem;
+        }
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem; /* Spacing between buttons */
+            padding: 1rem;
+        }
+        .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            font-size: 1.5rem;
+            font-weight: 500;
+            background-color: #333333; /* Dark gray for numbers */
+            border-radius: 0.75rem; /* Rounded corners for buttons */
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            user-select: none;
+            color: #ffffff;
+            border: none; /* Remove default button border */
+            outline: none; /* Remove outline on focus */
+        }
+        .button:hover {
+            background-color: #444444; /* Lighter dark gray on hover */
+            transform: translateY(-2px);
+        }
+        .button:active {
+            transform: translateY(0);
+            background-color: #222222; /* Darker dark gray on active */
+        }
+        .button.operator {
+            background-color: #555555; /* Slightly lighter gray for operators */
+            color: #ffffff;
+        }
+        .button.operator:hover {
+            background-color: #666666;
+        }
+        .button.operator:active {
+            background-color: #444444;
+        }
+        .button.equals {
+            background-color: #007bff; /* Professional blue for equals */
+            color: #ffffff;
+            grid-column: span 2; /* Make equals button span two columns */
+        }
+        .button.equals:hover {
+            background-color: #0056b3;
+        }
+        .button.equals:active {
+            background-color: #004085;
+        }
+        .button.clear {
+            background-color: #dc3545; /* Professional red for clear */
+            color: #ffffff;
+        }
+        .button.clear:hover {
+            background-color: #c82333;
+        }
+        .button.clear:active {
+            background-color: #bd2130;
+        }
+        .button.zero {
+            grid-column: span 2; /* Make zero button span two columns */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 400px) {
+            .calculator-container {
+                border-radius: 1rem;
+            }
+            .display {
+                font-size: 2rem;
+                padding: 1rem;
+            }
+            .button {
+                font-size: 1.25rem;
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="display" id="display">0</div>
+        <div class="buttons-grid">
+            <button class="button clear" onclick="clearDisplay()">C</button>
+            <button class="button operator" onclick="appendToDisplay('/')">/</button>
+            <button class="button operator" onclick="appendToDisplay('*')">*</button>
+            <button class="button operator" onclick="appendToDisplay('-')">-</button>
+
+            <button class="button" onclick="appendToDisplay('7')">7</button>
+            <button class="button" onclick="appendToDisplay('8')">8</button>
+            <button class="button" onclick="appendToDisplay('9')">9</button>
+            <button class="button operator" onclick="appendToDisplay('+')">+</button>
+
+            <button class="button" onclick="appendToDisplay('4')">4</button>
+            <button class="button" onclick="appendToDisplay('5')">5</button>
+            <button class="button" onclick="appendToDisplay('6')">6</button>
+            <button class="button" onclick="appendToDisplay('.')">.</button>
+
+            <button class="button" onclick="appendToDisplay('1')">1</button>
+            <button class="button" onclick="appendToDisplay('2')">2</button>
+            <button class="button" onclick="appendToDisplay('3')">3</button>
+            <button class="button equals" onclick="calculateResult()">=</button>
+
+            <button class="button zero" onclick="appendToDisplay('0')">0</button>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        let currentInput = '0';
+        let operator = null;
+        let previousInput = '';
+        let resetDisplay = false;
+
+        /**
+         * Appends a value to the calculator display.
+         * @param {string} value - The value to append (number or operator).
+         */
+        function appendToDisplay(value) {
+            if (resetDisplay) {
+                currentInput = value;
+                resetDisplay = false;
+            } else {
+                if (currentInput === '0' && value !== '.') {
+                    currentInput = value;
+                } else {
+                    currentInput += value;
+                }
+            }
+            display.textContent = currentInput;
+        }
+
+        /**
+         * Clears the calculator display and resets all internal states.
+         */
+        function clearDisplay() {
+            currentInput = '0';
+            operator = null;
+            previousInput = '';
+            resetDisplay = false;
+            display.textContent = currentInput;
+        }
+
+        /**
+         * Performs the calculation based on the current inputs and operator.
+         */
+        function calculateResult() {
+            try {
+                // Replace 'x' with '*' for eval function if needed, though here we use '*' directly
+                // Ensure the expression is safe to evaluate
+                const result = eval(currentInput); // Using eval for simplicity, but be cautious in production
+                currentInput = result.toString();
+                display.textContent = currentInput;
+                resetDisplay = true; // Prepare for new input after result
+            } catch (error) {
+                display.textContent = 'Error';
+                currentInput = '0';
+                resetDisplay = true;
+                console.error("Calculation error:", error);
+            }
+        }
+
+        // Optional: Add keyboard support
+        document.addEventListener('keydown', (event) => {
+            const key = event.key;
+            if (/[0-9]/.test(key)) {
+                appendToDisplay(key);
+            } else if (key === '.') {
+                appendToDisplay(key);
+            } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+                appendToDisplay(key);
+            } else if (key === 'Enter' || key === '=') {
+                event.preventDefault(); // Prevent default Enter key behavior (e.g., form submission)
+                calculateResult();
+            } else if (key === 'Backspace') {
+                if (currentInput.length > 1) {
+                    currentInput = currentInput.slice(0, -1);
+                } else {
+                    currentInput = '0';
+                }
+                display.textContent = currentInput;
+            } else if (key === 'Escape' || key === 'c' || key === 'C') {
+                clearDisplay();
+            }
+        });
+    </script>
+</body>
+</html>
